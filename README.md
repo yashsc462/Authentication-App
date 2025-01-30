@@ -1,50 +1,48 @@
 # Authentication-App
 Profileapp is a Django-based authentication system that includes user login, signup, password management, and profile management. The project follows a clean UI design with responsive forms, dynamic validation, and logging to track system events.
 
-Features
+## Features
 
-User Authentication
+### **User Authentication**
 
-Login with Username or Email and Password.
+- **Login** with Username or Email and Password.
+- Secure user sessions using **Django’s authentication system**.
 
-Secure user sessions using Django’s authentication system.
+### **User Signup**
 
-User Signup
+- Register with **Username**, **Email**, and **Password**.
+- **Password validation** for security compliance.
 
-Register with Username, Email, and Password.
+### **Password Management**
 
-Password validation for security compliance.
+- **Forgot Password**: Sends a reset link via email.
+- **Change Password**: Users can update their password after login.
+- **Reset Password**: Allows users to reset passwords via the email link.
 
-Password Management
+### **User Dashboard**
 
-Forgot Password: Sends a reset link via email.
+- **Greets logged-in users** and provides **Profile & Change Password** options.
+- **Logout** option included.
 
-Change Password: Users can update their password after login.
+### **Profile Page**
 
-Reset Password: Allows users to reset passwords via the email link.
+- Displays **Username**, **Email**, **Date Joined**, **Last Active**.
+- Provides an option to **logout**.
 
-User Dashboard
+### **Logging System**
 
-Greets logged-in users and provides Profile & Change Password options.
+- Logs user actions (signup, login, password changes, etc.).
+- Tracks **errors**, **warnings**, and **system activities**.
+- Logs are stored in **logs/django_app.log**.
 
-Logout option included.
+### **Responsive UI**
 
-Profile Page
+- Styled using **HTML**, **CSS**, and **JavaScript**.
+- Fully mobile-friendly with **media queries**.
 
-Displays Username, Email, Date Joined, Last Active.
+## Installation
 
-Provides an option to logout.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/django-auth-system.git
 
-Logging System
-
-Logs user actions (signup, login, password changes, etc.).
-
-Tracks errors, warnings, and system activities.
-
-Logs are stored in logs/django_app.log.
-
-Responsive UI
-
-Styled using HTML, CSS, and JavaScript.
-
-Fully mobile-friendly with media queries.
