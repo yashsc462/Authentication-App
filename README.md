@@ -50,15 +50,16 @@ Profileapp is a Django-based authentication system that includes user login, sig
 ## Tutorial
 
 ## Quick Start
-To get this project up and running locally on your computer follow the following steps.
 
-1. Set up a python virtual environment.
-2. Run the following commands.
+To get this project up and running locally on your computer, follow these steps:
 
--$ pip install -r requirements.txt.
--$ python manage.py migrate.
--$ python manage.py createsuperuser.
--$ python manage.py runserver.
+1. **Set up a Python virtual environment**.
 
-3. Open a browser and go to **http://127.0.0.1:8000**
+2. Run the following commands:
+
+   ```bash
+   pip install -r requirements.txt
+   python manage.py migrate
+   python manage.py createsuperuser
+   python manage.py runserver
 
