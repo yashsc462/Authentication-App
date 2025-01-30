@@ -18,6 +18,7 @@ Profileapp is a Django-based authentication system that includes user login, sig
 - **Forgot Password**: Sends a reset link via email.
 - **Change Password**: Users can update their password after login.
 - **Reset Password**: Allows users to reset passwords via the email link.
+- **Note**: App Password | Manage your google account > Security (Enable two step-verification) >App Passwords >Create New App name & Save it where a password will be generated, Copy the 16 character generated password and paste it here.
 
 ### **User Dashboard**
 
@@ -61,5 +62,6 @@ To get this project up and running locally on your computer, follow these steps:
    python manage.py runserver
 
 3. Open a browser and go to http://127.0.0.1:8000.
+
 
 
