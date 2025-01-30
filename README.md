@@ -46,6 +46,9 @@ Profileapp is a Django-based authentication system that includes user login, sig
 
 ![image](https://github.com/user-attachments/assets/459d2498-e08a-488f-82c8-eb2d7d136020)
 
+##**Tutorial**
+https://drive.google.com/file/d/13-PpQ_7Con1ppHFdg7PPS9fqbRuhEyO0/view?usp=sharing
+
 
 ## Quick Start
 
