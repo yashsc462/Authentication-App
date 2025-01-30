@@ -1,0 +1,217 @@
+{% block content %}
+{% load static %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .signup-container {
+        width: 450px;
+        background: white;
+        padding: 0; /* Remove padding so the background color stretches all the way */
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Ensures no spillover of background color */
+    }
+
+    /* Sign Up header background */
+    .signuphead {
+        background: #fd5c63;
+        width: 100%;
+        height: 80px; /* Set the height of the top section */
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        margin: 0; /* Remove margin to ensure the text is perfectly centered */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px; /* Add padding to the form below the header */
+    }
+
+    label {
+        font-weight: bold;
+        align-self: flex-start;
+        margin-top: 10px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .help-text {
+        font-size: 12px;
+        color: gray;
+        text-align: left;
+        align-self: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .error-text {
+        color: red;
+        font-size: 12px;
+        text-align: left;
+        align-self: flex-start;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 30%;
+        padding: 10px;
+        background: green;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: darkgreen;
+    }
+
+    .login-text {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .login-text a {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .login-text a:hover {
+        text-decoration: underline;
+    }
+
+    
+    .footer-section {
+        background: #fd5c63;
+        width: 100%;
+        height: 40px; /* Set your desired height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color : white;
+    }
+
+    .footer-section a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .footer-section a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+
+<div class="signup-container">
+    
+    <div class="signuphead">
+        <h2>Sign Up</h2>
+    </div>
+
+
+    <form method="post" id="signup-form">
+        {% csrf_token %}
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        <p class="help-text">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+        <p id="username-error" class="error-text"></p>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <p class="help-text">
+            • Your password can't be too similar to your other personal information.<br>
+            • Your password must contain at least 8 characters.<br>
+            • Your password can't be a commonly used password.<br>
+            • Your password can't be entirely numeric.
+        </p>
+        <p id="password-error" class="error-text"></p>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+        <p class="help-text">Enter the same password as before, for verification.</p>
+        <p id="confirm-password-error" class="error-text"></p>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="footer-section">
+    <p class="login-text">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+        let isValid = true;
+
+        // Clear previous error messages
+        document.getElementById("username-error").innerText = "";
+        document.getElementById("password-error").innerText = "";
+        document.getElementById("confirm-password-error").innerText = "";
+
+        // Username validation (letters, digits, @/./+/-/_ only, and 150 characters max)
+        const username = document.getElementById("username").value;
+        const usernameRegex = /^[A-Za-z0-9.+/-_]{1,150}$/;
+        if (!usernameRegex.test(username)) {
+            document.getElementById("username-error").innerText = "Username must be 150 characters or fewer, and only contain letters, digits, @/./+/-/_ characters.";
+            isValid = false;
+        }
+
+        // Password validation
+        const password = document.getElementById("password").value;
+        if (password.length < 8) {
+            document.getElementById("password-error").innerText = "Password must contain at least 8 characters.";
+            isValid = false;
+        } else if (/^[0-9]+$/.test(password)) {
+            document.getElementById("password-error").innerText = "Password can't be entirely numeric.";
+            isValid = false;
+        } else if (password === username) {
+            document.getElementById("password-error").innerText = "Password can't be too similar to your username.";
+            isValid = false;
+        }
+
+        // Confirm password validation
+        const confirmPassword = document.getElementById("confirm_password").value;
+        if (password !== confirmPassword) {
+            document.getElementById("confirm-password-error").innerText = "Passwords do not match.";
+            isValid = false;
+        }
+
+        // Prevent form submission if any validation failed
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+{% endblock %}

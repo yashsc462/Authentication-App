@@ -1,0 +1,132 @@
+{% block content %}
+{% load static %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        width: 450px;
+        background: white;
+        padding: 0; /* Remove padding so the background color stretches all the way */
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Ensures no spillover of background color */
+    }
+
+    /* Login header background */
+    .loginhead {
+        background: #fd5c63;
+        width: 100%;
+        height: 80px; /* Set the height of the top section */
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        margin: 0; /* Remove margin to ensure the text is perfectly centered */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px; /* Add padding to the form below the header */
+    }
+
+    label {
+        font-weight: bold;
+        align-self: flex-start;
+        margin-top: 10px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 30%;
+        padding: 10px;
+        background: #009000;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background: darkgreen;
+    }
+
+    /* New background section for "Signup" and "Forgot Password" */
+    .footer-section {
+        background: #fd5c63;
+        width: 100%;
+        height: 40px; /* Set your desired height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        color : black;
+    }
+
+    .footer-section a {
+        text-decoration: none;
+        font-weight: bold;
+        color: white; /* Set link color to white */
+    }
+
+    .footer-section a:hover {
+        text-decoration: underline;
+    }
+
+    
+
+</style>
+
+<div class="login-container">
+  
+    <div class="loginhead">
+        <h2>Login</h2>
+    </div>
+
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="username_or_email">Username or Email</label>
+        <input type="text" id="username_or_email" name="username_or_email" placeholder="Enter your username or email" required>
+    
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    
+        <button type="submit">Login</button>
+    </form>
+
+
+    <div class="footer-section">
+        <p class="signup-text">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+
+    <div class="footer-section">
+        <p class="forgot-password"><a href="{% url 'forgot_password' %}">Forgot Password?</a></p>
+    </div>
+</div>
+
+{% endblock %}

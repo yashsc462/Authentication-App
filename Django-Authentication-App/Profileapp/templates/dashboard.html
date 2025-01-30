@@ -1,0 +1,105 @@
+{% block content %}
+{% load static %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .dashboard-container {
+        width: 450px;
+        background: white;
+        padding: 0;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    /* Username Header (like login page) */
+    .usernamehead {
+        background: #fd5c63;
+        width: 100%;
+        height: 80px;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    .content {
+        padding: 20px;
+        text-align: left; /* Align content to the left */
+    }
+
+    /* Links styles - remove blue color and keep black text */
+    .text-link {
+        color: black; /* Set the text color to black */
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: block;
+        margin-left: 0; /* Align links to the left */
+    }
+
+    .text-link:hover {
+        text-decoration: none; /* Remove underline on hover */
+    }
+
+    .footer-section {
+        background: #fd5c63;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-section a {
+        color: black; /* Set the logout link color to black */
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .footer-section a:hover {
+        text-decoration: none; /* Remove underline on hover */
+    }
+
+</style>
+
+<div class="dashboard-container">
+ 
+    <div class="usernamehead">
+        <h2>Hi {{ user.username }}!</h2>
+    </div>
+
+    <div class="content">
+        <p>Welcome to this brilliant example of an authentication app with cutting edge features.</p>
+        <p>Wanna try them?</p>
+        <hr>
+
+        <!-- Profile and Change Password as text links, aligned to the left -->
+        <a href="{% url 'profile' %}" class="text-link">Profile</a> <hr>
+        <a href="{% url 'change_password' %}" class="text-link">Change Password</a> <hr>
+        <p> </p>
+    </div>
+
+   
+    <div class="footer-section">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+{% endblock %}
